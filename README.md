@@ -3,6 +3,7 @@
 Customized HyDE dots lol
 
 ## Notes
+meow
 
 ## Installation & Setup Instructions
 
