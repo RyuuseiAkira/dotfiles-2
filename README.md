@@ -11,7 +11,7 @@ meow
    Follow the instructions on the official HyDE website: https://hydeproject.pages.dev/ 
 
 2. **Install Chezmoi:**
-   Follow the instructions on the official chezmoi website: https://www.chezmoi.io/
+   Follow the instructions on the official chezmoi website: [https://www.chezmoi.io/](https://www.chezmoi.io/install/)
    
 3. **Initialize chezmoi:**
    ```bash
