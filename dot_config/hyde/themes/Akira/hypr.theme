@@ -1,0 +1,51 @@
+$HOME/.config/hypr/themes/theme.conf|> $HOME/.config/hypr/themes/colors.conf
+#  Akira
+
+$GTK_THEME = Wallbash-Gtk
+$ICON_THEME = Tela-circle-blue
+$COLOR_SCHEME = prefer-dark
+
+$CURSOR_THEME=hyprTachy
+$CURSOR_SIZE=40
+
+# Optional: The varibles above will be set automatically when the theme is loaded
+# This exec commands will soon be deprecated
+
+exec = gsettings set org.gnome.desktop.interface icon-theme $ICON_THEME
+exec = gsettings set org.gnome.desktop.interface gtk-theme $GTK_THEME
+exec = gsettings set org.gnome.desktop.interface color-scheme $COLOR_SCHEME
+
+general {
+    gaps_in = 3
+    gaps_out = 8
+    border_size = 2
+    col.active_border = rgba(eb6f92ff) rgba(c4a7e7ff) 45deg
+    col.inactive_border = rgba(31748fcc) rgba(9ccfd8cc) 45deg
+    layout = dwindle
+    resize_on_border = true
+}
+
+group {
+    col.border_active = rgba(eb6f92ff) rgba(c4a7e7ff) 45deg
+    col.border_inactive = rgba(31748fcc) rgba(9ccfd8cc) 45deg
+    col.border_locked_active = rgba(eb6f92ff) rgba(c4a7e7ff) 45deg
+    col.border_locked_inactive = rgba(31748fcc) rgba(9ccfd8cc) 45deg
+}
+
+decoration {
+    rounding = 12
+    shadow:enabled = false
+
+    blur {
+        enabled = yes
+        size = 8
+        passes = 4
+        new_optimizations = on
+        ignore_opacity = on
+        xray = false
+    }
+}
+
+
+# waybar -c /home/akira/.config/hyde/themes/Akira/waybar/config.jsonc -s /home/akira/.config/hyde/themes/Akira/waybar/style.css
+layerrule = blur,waybar

@@ -1,0 +1,13 @@
+name: Wallbash
+author: akira
+stylesheets:
+  - name: Wallbash // BASE
+    file: wallbash.scss
+    description: Base theme based on catppuccin mocha theme
+  - file: window-controls.scss
+    name: Hide window controls
+    description: Hide minimize and maximize; change to adwaita-style close button. // cre adwaita theme
+  - file: big-screen.scss
+    name: Big screen
+    description: Optimizes immersive mode for TVs. // cre adwaita theme
+version: "0.4"

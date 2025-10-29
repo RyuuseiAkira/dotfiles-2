@@ -1,0 +1,27 @@
+$HOME/.config/foot/color.ini|killall -TRAPUSR1 foot
+[colors]
+ background=<wallbash_pry1>
+ foreground=<wallbash_txt1>
+
+# Normal/regular colors (color palette 0-7)
+ regular0=<wallbash_1xa1>  # black
+ regular1=<wallbash_4xa9>  # red
+ regular2=<wallbash_2xa9>  # green
+ regular3=<wallbash_3xa9>  # yellow
+ regular4=<wallbash_1xa7>  # blue
+ regular5=<wallbash_2xa7>  # magenta
+ regular6=<wallbash_3xa7>  # cyan
+ regular7=<wallbash_4xa9>  # white
+
+# Bright colors (color palette 8-15)
+ bright0=<wallbash_1xa4>   # bright black
+ bright1=<wallbash_4xa8>   # bright red
+ bright2=<wallbash_2xa8>   # bright green
+ bright3=<wallbash_3xa8>   # bright yellow
+ bright4=<wallbash_1xa7>   # bright blue
+ bright5=<wallbash_2xa7>   # bright magenta
+ bright6=<wallbash_3xa7>   # bright cyan
+ bright7=<wallbash_4xa8>   # bright white
+
+ selection-foreground=<wallbash_pry1>
+ selection-background=<wallbash_txt1>

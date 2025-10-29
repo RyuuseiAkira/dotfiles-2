@@ -1,0 +1,17 @@
+/* ------------------------------------- */
+/*            Hide Min/Maximize          */
+/* ------------------------------------- */
+
+.new-shell-page-container [sfc-name="QToolbar"].chrome-top:not(.no-controls) {
+  padding: 0 46px 0 12px;
+}
+
+[sfc-name="window-controls-windows"] .window-control.minimize,
+[sfc-name="window-controls-windows"] .window-control.minmax {
+  display: none;
+}
+
+[sfc-name="window-controls-windows"].window-controls {
+  width: 42px;
+  margin: 0;
+}

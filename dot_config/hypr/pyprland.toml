@@ -1,0 +1,32 @@
+[pyprland]
+plugins = [
+ "expose",
+ "fetch_client_menu",
+ "lost_windows",
+ "magnify",
+ "scratchpads",
+# "shift_monitors",
+ "toggle_special",
+# "workspaces_follow_focus",
+ "layout_center",
+]
+
+# using variables for demonstration purposes (not needed)
+[pyprland.variables]
+term_classed = "kitty --class"
+
+[scratchpads.term]
+animation = "fromTop"
+command = "[term_classed] main-dropterm"
+class = "main-dropterm"
+size = "75% 60%"
+max_size = "1920px 100%"
+
+[layout_center]
+captive_focus = false
+margin = 30
+offset = [0, 0]
+next = "movefocus r"
+prev = "movefocus l"
+next2 = "movefocus d"
+prev2 = "movefocus u"

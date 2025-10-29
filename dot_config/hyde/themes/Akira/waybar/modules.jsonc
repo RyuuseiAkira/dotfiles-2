@@ -1,0 +1,350 @@
+{ 
+  "group/info": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false
+    },
+    "modules": ["custom/arrow-right","custom/updates","mpris"] //meow meow meow meow meow meow meow
+  },
+
+  "custom/cpuinfo": {
+    "exec": "cpuinfo.sh",
+    "return-type": "json",
+    "format": " - {}",
+    "interval": 30, // once every 10 seconds
+    "tooltip": true,
+    "max-length": 1000
+},
+
+  "custom/fanmode": {
+    "format": "{}",
+    "exec": "$HOME/.config/hyde/themes/Akira/Scripts/fanspeed.sh && $HOME/.config/hyde/themes/Akira/Scripts/tempcheck.sh",
+    "on-click": "foot -e $HOME/.config/hyde/themes/Akira/Scripts/temp.sh",
+    //"on-click-right": "fanspeed.sh",
+    //"on-click-middle": "tempcheck.sh",
+    "tooltip": true,
+    "tooltip-format": "Turbo fan:{}",
+    "interval" : 15
+},
+
+  "custom/auto-cpufreq" : {
+      "format": "{}",
+      "return-type": "json",
+      "tooltip": true,
+      "escape" : true,
+      //"on-click-right": "hyde-shell gamemode",
+      "exec": "$HOME/.config/hyde/themes/Akira/Scripts/auto-cpufreq-status.sh",
+      "interval" : 15
+  },
+
+  "custom/updates": {
+    "exec": "systemupdate.sh",
+    "return-type": "json",
+    "format": "{}",
+    "on-click": "hyprctl dispatch exec 'systemupdate.sh up'",
+    "interval": 86400, // once every day
+    "tooltip": true,
+    "signal": 25
+},
+
+  "custom/arrow-right": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "disable-scroll": false,
+    "on-click": "activate",
+    "all-outputs": true,
+    "format-icons": {
+                        "urgent": "",
+                        "active": "", // 
+                        "default": ""
+  },
+        "persistent-workspaces": {
+	        "*": 3
+	}
+  
+},
+
+"pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "<big>󰝟</big>",
+    "on-click": "volumecontrol.sh -s ''",
+    "on-click-right": "pavucontrol -t 3",
+    "on-click-middle": "volumecontrol.sh -o m",
+    "on-scroll-up": "volumecontrol.sh -o i",
+    "on-scroll-down": "volumecontrol.sh -o d",
+    "tooltip-format": "{icon} {desc} // {volume}%",
+    "scroll-step": 5,
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+    }
+},
+
+  "group/hub": {
+    "orientation": "inherit",
+    "modules": ["group/utils","privacy","pulseaudio"] //meow meow meow meow meow meow meow meow
+  },
+  "group/utils": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": true
+    },
+    "modules": ["custom/arrow-left","tray","custom/spacing2","custom/fanmode","custom/spacing3","custom/auto-cpufreq","custom/spacing3","idle_inhibitor","custom/spacing2"] //meow meow meow meow meow meow meow meow meow meow meow meow
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "󰫢",
+        "deactivated": "󰫣"
+    },
+    "on-click-right": "kblightcycle.sh i", //increase kb backlight
+    "on-scroll-up": "brightnesscontrol.sh i 5", 
+    "on-scroll-down": "brightnesscontrol.sh d 5"
+},
+  "custom/arrow-left": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/notifications": {
+    "tooltip": false,
+    "format": "{icon} {}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂚",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰂛",
+      "inhibited-notification": "󰂚",
+      "inhibited-none": "󰂚",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰂛"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%A %d.%m}",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+
+  "tray": {
+    "format": "{} ",
+    "icon-size": 15,
+    "spacing": 9
+},
+"group/power": {
+  "orientation": "inherit",
+  "drawer": {
+    "transition-duration": 500,
+    "transition-left-to-right": true
+  },
+  "modules": ["battery"]
+},
+"battery": {
+  "states": {
+    "good": 95,
+    "warning": 30,
+    "critical": 15
+  },
+  "format": "{icon} {capacity}%",
+  "format-charging": "<b>󰂄 {capacity}%</b>",
+  "format-full": "<b>󰁹</b>",
+  "format-icons": [
+    "󰁻",
+    "󰁼",
+    "󰁾",
+    "󰂀",
+    "󰂂",
+    "󰁹"
+  ],
+  "tooltip-format": "{timeTo} | {capacity} % | {power} W"
+},
+"custom/power": {
+  "format": "{}",
+  "exec": "echo ; echo L-Click for power menu // R-Click for utils menu",
+  "on-click": "logoutlaunch.sh 1",
+  //"on-click-right": "logoutlaunch.sh 1",
+  "menu": "on-click-right",
+    "menu-file": "$HOME/.config/hyde/themes/Akira/waybar/menus/hyde-menu.xml",
+    "menu-actions": {
+      "animations-select": "hyde-shell animations --select",
+      "wallpaper-select": "hyde-shell wallpaper --select --global",
+      "wallpaper-next": "hyde-shell wallpaper --backend swww --next --global",
+      "wallpaper-previous": "hyde-shell wallpaper --backend swww --previous --global",
+      "wallpaper-random": "hyde-shell wallpaper --backend swww --random --global",
+      "workflows-select": "hyde-shell workflows --select;pkill -RTMIN+19 waybar",
+      "shaders-select": "hyde-shell shaders --select;pkill -RTMIN+19 waybar"
+    },
+  "interval" : 86400, // once every day
+  "tooltip": true
+},
+"custom/spotify": {
+  "exec": "~/.local/share/bin/mediaplayer.py --player spotify",
+  "format": " {}",
+  "return-type": "json",
+  "on-click": "playerctl play-pause --player spotify",
+  "on-click-right": "playerctl next --player spotify",
+  "on-click-middle": "playerctl previous --player spotify",
+  "on-scroll-up": "~/.local/share/bin/volumecontrol.sh -p spotify i",
+  "on-scroll-down": "~/.local/share/bin/volumecontrol.sh -p spotify d",
+  "max-length": 100,
+  "escape": true,
+  "tooltip": true
+  },
+"mpris": {
+    "format": "{player_icon} {artist} - <b>{title}</b>",
+    "format-paused": "{status_icon} <i>{artist} - {title}</i>",
+    "tooltip": "true",
+    "tooltip-format": "{artist} - {title}",
+    "player-icons": { 
+        "default": "󰎇",
+        "mpv": "🎵",
+        "Lollypop": "",
+        "spotify": ""
+    },
+    "status-icons": {
+        "paused": "▶"
+    },
+    //"ignored-players": ["spotify"],
+    "max-length": 1000,
+    "interval": 5
+},
+"pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "󰍬",
+    "format-source-muted": "󰍭",
+    "on-click": "pavucontrol -t 4",
+    "on-click-middle": "volumecontrol.sh -i m",
+    "on-scroll-up": "volumecontrol.sh -i i",
+    "on-scroll-down": "volumecontrol.sh -i d",
+    "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+    "scroll-step": 5
+},
+"privacy": {
+  "icon-size": 9,
+  "icon-spacing": 6,
+  "transition-duration": 250,
+  "modules": [
+      {
+          "type": "screenshare",
+          "tooltip": true,
+          "tooltip-icon-size": 24
+      },
+      {
+          "type": "audio-in",
+          "tooltip": true,
+          "tooltip-icon-size": 24
+      }
+  ]
+},
+"power-profiles-daemon": {
+  "format": "{icon}",
+  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  "tooltip": true,
+  "format-icons": {
+    "default": "",
+    "performance": "",
+    "balanced": "",
+    "power-saver": ""
+  }
+},
+"network": {
+  "tooltip": true,
+  "format-wifi": " {essid}",
+  "format-ethernet": "󰈁",
+  "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+  "format-linked": "󰈁 {ifname} (No IP)",
+  "format-disconnected": "󰖪 ",
+  "tooltip-format-disconnected": "Disconnected",
+  "format-alt": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
+  "interval": 2
+},
+  "custom/pomobar": {
+    "format": "{} {icon}",
+    "format-icons": {
+      "idle": "",
+      "paused": "",
+      "work": "",
+      "short_break": "",
+      "long_break": ""
+    },
+    "interval": 1,
+    "exec": "${HOME}/.config/waybar/pomobar-cli status",
+    "on-click": "${HOME}/.config/waybar/pomobar-cli toggle",
+    "on-click-middle": "${HOME}/.config/waybar/pomobar-cli reset",
+    "return-type": "json"
+},
+
+"custom/hyde-menu": {
+    "format": " ",
+    "tooltip": true,
+    "tooltip-format": "Right-click for more options",
+    "menu": "on-click-right",
+    "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/hyde-menu.xml",
+    "menu-actions": {
+      "animations-select": "hyde-shell animations --select",
+      "wallpaper-select": "hyde-shell wallpaper --select --global",
+      "wallpaper-next": "hyde-shell wallpaper --backend swww --next --global",
+      "wallpaper-previous": "hyde-shell wallpaper --backend swww --previous --global",
+      "wallpaper-random": "hyde-shell wallpaper --backend swww --random --global",
+      "workflows-select": "hyde-shell workflows --select;pkill -RTMIN+19 waybar",
+      "shaders-select": "hyde-shell shaders --select;pkill -RTMIN+19 waybar"
+    }
+},
+
+"custom/gamemode": {
+        "format": " ",
+        "tooltip-format": " Toggle game mode",
+        "rotate": 0,
+        "on-click": "hyde-shell gamemode"
+    },
+
+"custom/spacing": {
+  "format": " ",
+  "tooltip": false
+},
+"custom/spacing1": {
+  "format": " / ",
+  "tooltip": false
+},
+"custom/spacing2": {
+  "format": " // ",
+  "tooltip": false
+},
+"custom/spacing3": {
+  "format": " - ",
+  "tooltip": false
+}
+}

@@ -1,0 +1,7 @@
+
+.config/hyde/themes/Akira/wallpapers/** # ignore the contents of wallpapers folder but not the folder itself
+.config/hyde/themes/Akira/wall.set
+.config/hyde/themes/Akira/wall.hyprlock.png
+.config/hyde/themes/Akira/.sort
+
+.config/fastfetch/logo

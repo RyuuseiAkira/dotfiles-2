@@ -1,0 +1,22 @@
+{
+  "layer": "bottom",
+  "position": "bottom",
+  "margin": "0 100 10 100",
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  "include": ["~/.config/hyde/themes/Akira/waybar/modules.jsonc"],
+  "modules-left": [ 
+    "hyprland/workspaces",
+    "group/info"
+  ],
+  
+  "modules-center": [
+    "clock"
+  ],
+
+  "modules-right": [
+    "group/hub",
+    "group/power",
+    "custom/power"
+  ]
+}
